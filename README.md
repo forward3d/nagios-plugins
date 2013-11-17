@@ -65,4 +65,10 @@ configured to only handle a single connection - when all backends are busy, the 
 connections are queued. This plugin is useful in any situation where you've limited
 the number of connections your backends can accept.
 
+### Usage
 
+    check_haproxy_backlog.rb -H [haproxy host] -p [haproxy port] -c [critical] -w [warning] -n [name]
+
+The arguments are self-explanatory - set `-n` to the name of the HAProxy service to observe,
+and `-c` and `-w` to the critical and warning values; if the number of queued connections is
+over these values, the appropriate status will be returned.
