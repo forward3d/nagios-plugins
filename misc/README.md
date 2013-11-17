@@ -27,6 +27,18 @@ Arguments are as follows:
 The plugin will create a file at `/tmp/ftpfile` to upload, and the file will be placed in the
 root of the FTP server and named `nagios_test`.
 
+## check_github_status.rb
+
+This is a very simple Nagios plugin for checking Github's [Status API](https://status.github.com/api).
+
+Github's Status API returns 3 states - good (which we take to mean OK), minor (which we report as WARNING), 
+and major (which we report as CRITICAL).
+
+### Usage
+
+    check_github_status.rb
+
+The plugin doesn't take any arguments.
 
 ## send_to_clickatell.rb
 
@@ -60,3 +72,4 @@ Clickatell advise you use.
 
 The plugin will log to syslog with the program name `send_to_clickatell`. This is helpful if you need to debug
 why a notification didn't get sent, and what notifications were sent, at what time, and to who.
+
