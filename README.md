@@ -2,6 +2,10 @@
 
 This is a collection of Nagios plugins I wrote for Forward3D's systems.
 
+# Contents
+
+* [check_haproxy.rb](#check_haproxy.rb)
+
 # List of plugins
 
 ## check_haproxy.rb
