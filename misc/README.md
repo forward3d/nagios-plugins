@@ -61,8 +61,9 @@ Configure the Nagios command in your Nagios configuration file with something li
       command_name send_to_clickatell
     }
 
-Amend the message to suit your needs. Make sure your contacts have their mobile number specified in `contact_pager`.
-Now you can assign `send_to_clickatell` to any of your services you want to notify by text message for.
+Amend the message to suit your needs. Make sure your contacts have their mobile number specified in the `pager`
+configuration property. Now you can assign `send_to_clickatell` to any of your services you want to notify by 
+text message for.
 
 ### Notes
 
