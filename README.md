@@ -4,7 +4,8 @@ This is a collection of Nagios plugins I wrote for Forward3D's systems.
 
 # Contents
 
-* [check_haproxy.rb](#check_haproxy.rb)
+* [check_haproxy.rb](#check_haproxyrb)
+* [check_haproxy_backlog.rb](#check_haproxy_backlogrb)
 
 # List of plugins
 
@@ -55,3 +56,13 @@ always expected to be DOWN:
     failover,u,0,0
 
 This will alert CRITICAL if there are 0 UP hosts.
+
+## check_haproxy_backlog.rb
+
+This is a simple plugin for checking the number of queued connections for
+a given backend in HAProxy. We have a number of farms where each backend is
+configured to only handle a single connection - when all backends are busy, the frontend
+connections are queued. This plugin is useful in any situation where you've limited
+the number of connections your backends can accept.
+
+
