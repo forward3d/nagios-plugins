@@ -7,6 +7,7 @@ Thinking they might be useful for other people, I've released them publically.
 
 Misc checks:
 * [check_ftp.rb](misc/README.md#check_ftprb)
+* [check_github_status.rb](misc/README.md#check_github_statusrb)
 * [send_to_clickatell.rb](misc/README.md#send_to_clickatellrb)
 
 HAProxy checks:
