@@ -21,3 +21,6 @@ EC2 checks:
 Resque checks:
 * [check_long_running_resque_jobs.rb](resque/README.md#check_long_running_resque_jobsrb)
 * [check_resque_failed_jobs.rb](resque/README.md#check_resque_failed_jobsrb)
+
+Logstash checks:
+* [check_long_running_resque_jobs.rb](logstash/README.md#check_logstash_receiving_eventsrb)
