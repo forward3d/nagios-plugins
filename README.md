@@ -23,4 +23,4 @@ Resque checks:
 * [check_resque_failed_jobs.rb](resque/README.md#check_resque_failed_jobsrb)
 
 Logstash checks:
-* [check_long_running_resque_jobs.rb](logstash/README.md#check_logstash_receiving_eventsrb)
+* [check_logstash_receiving_events.rb](logstash/README.md#check_logstash_receiving_eventsrb)
