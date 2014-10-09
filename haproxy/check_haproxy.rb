@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'net/http'
 require 'net/https'
 require 'optparse'
 
@@ -75,8 +74,6 @@ if !options[:uri].nil?
 end
 
 @uristr << ';csv'
-
-puts @uristr
 
 uri = URI.parse @uristr
 req = Net::HTTP::Get.new(uri.request_uri)
