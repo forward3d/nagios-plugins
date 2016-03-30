@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'net/http'
+require 'net/https'
 require 'optparse'
 
 # Constants
@@ -9,6 +9,7 @@ WARNING = 1
 OK = 0
 
 options = {}
+@uristr  = ''
 OptionParser.new do |opts|
   opts.on("-h", "--host HOST", "Hostname of the HAProxy server") do |h|
     options[:host] = h
@@ -16,7 +17,19 @@ OptionParser.new do |opts|
   opts.on("-p", "--port PORT", "Port the stats interface is listening on") do |p|
     options[:port] = p
   end
-  opts.on("-t", "--test TESTSPEC", 
+  opts.on("-i", "--uri URI", "Uri of the stats page") do |i|
+    options[:uri] = i
+  end
+  opts.on("-u", "--username USERNAME", "Username the stats interface responds to") do |u|
+    options[:username] = u
+  end
+  opts.on("-P", "--password PASSWORD", "Password the stats interface responds to") do |P|
+    options[:password] = P
+  end
+  opts.on("-T", "--tls", "Use TLS to connect to stats page") do |T|
+    options[:tls] = T
+  end
+ opts.on("-t", "--test TESTSPEC", 
           "Test specification:",
           "Specify four values separated by commas",
           "First value is the name of the farm in HAProxy's configuration",
@@ -44,8 +57,34 @@ if options[:port].nil?
   exit 3
 end
 
-uri = URI.parse "http://#{options[:host]}:#{options[:port]}/;csv"
-response = Net::HTTP.get_response(uri)
+if options[:tls].nil?
+  @uristr = "http://"
+else
+  @uristr = "https://"
+end
+
+@uristr << "#{options[:host]}"
+
+if !options[:port].nil?
+  @uristr << ":#{options[:port]}"
+end
+
+if !options[:uri].nil?
+  @uristr << "#{options[:uri]}"
+end
+
+@uristr << ';csv'
+
+uri = URI.parse @uristr
+req = Net::HTTP::Get.new(uri.request_uri)
+req.basic_auth "#{options[:username]}", "#{options[:password]}" unless options[:username].nil?
+
+http = Net::HTTP.new(uri.host, uri.port)
+http.use_ssl = true unless options[:tls].nil?
+http.verify_mode = OpenSSL::SSL::VERIFY_NONE unless options[:tls].nil?
+
+response = http.request(req)
+
 
 def is_up?(entry)
   entry.split(",")[17] == "UP"
